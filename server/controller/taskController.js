@@ -21,7 +21,7 @@ export const createTask = catchAsyncErrors(async (req, res, next) => {
 //delete task
 export const deleteTask = catchAsyncErrors(async (req, res, next) => {
   const { id } = req.params;
-  let task = await Task.findById(id);
+  const task = await Task.findById(id);
   if (!task) {
     return next(new ErrorHandler("Task Not Found", 400));
   }
