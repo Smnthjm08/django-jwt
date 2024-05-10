@@ -25,11 +25,13 @@ To start the server in development mode with automatic reloading:
 
 ````bash
 cd server
+npm i
 npm run dev
+````
 
-# Frontend (Client)
+## Frontend (Client)
 
-## Features
+### Features
 
 - **HTTP Requests**: Manages communication with the backend.
 - **Responsive Design**: Utilizes Bootstrap for mobile-friendly layouts.
@@ -46,6 +48,8 @@ To start the client-side development server:
 
 ```bash
 cd frontend
+npm i
 npm run dev
+```
 
-````
+
