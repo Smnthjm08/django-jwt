@@ -1,55 +1,50 @@
-# MERN Task Management
+# React + TypeScript + Vite
 
-## Description
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-This project consists of both server-side and client-side components for a MERN (MongoDB, Express.js, React.js, Node.js) application aimed at task management.
+Currently, two official plugins are available:
 
-## Server (Backend)
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### Features
+## Expanding the ESLint configuration
 
-- **Secure Authentication**: Encrypts passwords for user security.
-- **Media Management**: Manages images and videos for tasks.
-- **Cookie Handling**: Simplifies cookie parsing for authentication.
-- **Cross-Origin Support**: Enables communication with frontend applications.
-- **Environment Configuration**: Easily manage environment variables.
-- **Express.js Framework**: Powers the backend server and APIs.
-- **File Upload Handling**: Simplifies file uploads for tasks.
-- **JSON Web Tokens**: Handles authentication and authorization securely.
-- **Database Modeling**: Provides structured data handling for MongoDB.
-- **Data Validation**: Ensures user input meets specific criteria.
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-#### Run Command
+- Configure the top-level `parserOptions` property like this:
 
-To start the server in development mode with automatic reloading:
-
-````bash
-cd server
-npm i
-npm run dev
-````
-
-## Frontend (Client)
-
-### Features
-
-- **HTTP Requests**: Manages communication with the backend.
-- **Responsive Design**: Utilizes Bootstrap for mobile-friendly layouts.
-- **User Interface**: Renders interactive components with React.
-- **Bootstrap Components**: Pre-styled components for quick development.
-- **Toast Notifications**: Provides user feedback for actions.
-- **Icon Library**: Easily incorporate icons into the UI.
-- **Routing and Navigation**: Navigates between different views seamlessly.
-- **Loading Spinners**: Enhances user experience during asynchronous operations.
-
-### Run Command
-
-To start the client-side development server:
-
-```bash
-cd frontend
-npm i
-npm run dev
+```js
+export default tseslint.config({
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
 ```
 
+- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
+- Optionally add `...tseslint.configs.stylisticTypeChecked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
+```js
+// eslint.config.js
+import react from 'eslint-plugin-react'
+
+export default tseslint.config({
+  // Set the react version
+  settings: { react: { version: '18.3' } },
+  plugins: {
+    // Add the react plugin
+    react,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended rules
+    ...react.configs.recommended.rules,
+    ...react.configs['jsx-runtime'].rules,
+  },
+})
+```
