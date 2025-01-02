@@ -1,0 +1,21 @@
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media
+
+# Django specific
+*.mo
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+
+# Django DRF
+*.env
+*.DS_Store
+*.swp
+
+env
